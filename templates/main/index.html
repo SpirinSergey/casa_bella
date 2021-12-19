@@ -1,0 +1,91 @@
+{% extends 'main/layout.html' %}
+{% load static %}
+
+
+{% block title %}<title>Casa Bella - Home</title>{% endblock %}
+
+
+{% block content %}
+
+    <section class="section-style">
+        <div class="row w-100 align-items-center mx-0">
+            <div class="col-lg-6 info">
+                <div class="container text-center">
+                    <h1 class="display-4 text-uppercase mb-3">Welcome to CasaBella Residences by B&B Italia</h1>
+                    <p class="about-text text-uppercase">The Art of Italian living<br>By Piero Lissoni</p>
+                </div>
+            </div>
+            <div class="col-lg px-0">
+                <div class="image-style" style="background-image: url({% static 'main/img/2block.jpg' %});"></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-style">
+        <div class="row w-100 align-items-center mx-0">
+                        <div class="col-lg px-0">
+                <div class="image-style" style="background-image: url({% static 'main/img/1block.jpg' %});"></div>
+            </div>
+            <div class="col-lg-6 info">
+                <div class="container text-center">
+                    <h3 class="display-4 text-uppercase mb-3">About Us</h3>
+                    <p class="about-text text-uppercase">The history of our exciting residence</p>
+                    <a href="#" class="double-border-button text-dark text-uppercase">Learn more</a>
+                </div>
+            </div>
+        </div>
+    </section>
+<div style="height: 30px;"> </div>
+    <section class="mygallery">
+        <hr>
+        <div class="text-center">
+            <h4>CasaBella Residences by B&B Italia has collaborated with</h4>
+            <h4>the most celebrated Italian artists to curate your home</h4>
+            <h4> with select masterworks from the B&B Italia collections.</h4>
+        </div>
+        <hr>
+        <div class="text-center mygallery">
+            <h1 class="display-4 text-uppercase mb-3">Amenities</h1>
+            <p class="about-text text-uppercase">We have prepared all possible amenities for your pleasure.</p>
+        </div>
+        <div class="block-style">
+            <div>
+                <img class="block-style-img img-fluid" src="{% static 'main/img/3block1.jpg' %}" alt="">
+            </div>
+            <div>
+                <img class="block-style-img img-fluid" src="{% static 'main/img/3block2.jpg' %}" alt="">
+            </div>
+            <div>
+                <img class="block-style-img img-fluid" src="{% static 'main/img/3block3.jpg' %}" alt="">
+            </div>
+            <div>
+                <img class="block-style-img img-fluid" src="{% static 'main/img/3block5.jpg' %}" alt="">
+            </div>
+            <div>
+                <img class="block-style-img img-fluid" src="{% static 'main/img/3block4.jpg' %}" alt="">
+            </div>
+        </div>
+        <br>
+        <div class="text-center">
+            <a href="{% url 'indoor' %}" class="double-border-button text-dark text-uppercase">INDOOR</a>
+            <a href="{% url 'outdoor' %}" class="double-border-button text-dark text-uppercase">OUTDOOR</a>
+        </div>
+    </section>
+
+
+    <section class="section-style">
+        <div class="row w-100 align-items-center mx-0">
+            <div class="col-lg-6 info">
+                <div class="container text-center">
+                    <h3 class="display-4 text-uppercase mb-3">Welcome to <br>Lorem ipsum dolor sit amet.</h3>
+                    <a href="{% url 'listings' %}" class="double-border-button text-dark text-uppercase">Show listing</a>
+                </div>
+            </div>
+            <div class="col-lg px-0">
+                <div class="image-style" style="background-image: url({% static 'main/img/4block.jpg' %});"></div>
+            </div>
+        </div>
+    </section>
+<div style="height: 100px;"> </div>
+
+{% endblock %}

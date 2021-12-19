@@ -1,0 +1,74 @@
+.right-logo-text {
+    margin-left: 9%;
+    font-size: small;
+    letter-spacing: 0.1px;
+    line-height: 11px;
+
+}
+
+.image-style {
+    height: 650px;
+    background-size: cover;
+
+}
+
+.block-style{
+    display: flex;
+    width: 100%;
+}
+
+.block-style-img{
+    height: 230px;
+    width: auto;
+}
+
+.myfooter {
+    background-color: #212529;
+    color: #ffffff;
+    width: 100%;
+    padding: 2px;
+    height: 50px;
+    margin-bottom: 0;
+}
+
+.navtext {
+    font-size: 16px;
+}
+
+.mygallery {
+    margin-top: 90px;
+    padding-bottom: 45px;
+}
+
+.gallery-1 {
+    float: left;
+}
+
+.gallery-img {
+    width: 400px;
+    height: 400px;
+    margin-left: 10px;
+}
+
+.my-video {
+    height: 600px;
+    width: 100%;
+}
+
+.about-block-3 {
+    margin-top: 50px;
+    height: 650px;
+    width: 100%;
+
+}
+
+.heading-style {
+    margin-top: 90px;
+    padding: 0;
+    height: 350px;
+}
+
+.amenities-1-block {
+    width: 35%;
+}
+

@@ -1,0 +1,121 @@
+{% extends 'main/layout.html' %}
+{% load static %}
+
+
+
+{% block title %}<title>Casa Bella - Contacts</title>{% endblock %}
+
+
+{% block content %}
+
+    <div class="page-content contact-block pb-0">
+        <div class="container">
+            <div style="height: 90px"></div>
+        <div class="row">
+            <div class="col-lg-7 mb-4">
+                <h4>Contact data</h4>
+                <hr class="mb-4">
+                <div class="row">
+                    <div class="col mb-4">
+                        <h5><i class="bi bi-geo-alt icon-title"></i> Location:</h5>
+                        <p>
+                            330 Biscayne Blvd, Miami
+                            <br>Florida 33132
+                        </p>
+                    </div>
+                    <div class="col mb-4">
+                        <h5><i class="bi bi-envelope icon-title"></i> Email:</h5>
+                        <p><a href="#">info@residencewaldorfastoria.com</a></p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col mb-4">
+                        <h5><i class="bi bi-telephone icon-title"></i> Call:</h5>
+                        <p><a href="tel:+1 (305) 647-2650">+1 (305) 647-2650</a></p>
+                    </div>
+                    <div class="col">
+                        <h5><i class="bi bi-globe icon-title"></i> Messengers:</h5>
+                        <div class="messengers-icons">
+                            <p>
+                                <a href="#" class="whatsapp"><i class="bi bi-whatsapp"></i></a>
+                                <a href="#" class="telegram"><i class="bi bi-telegram"></i></a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-5 mb-4">
+                <h4>Write to us</h4>
+                <hr class="mb-4">
+
+                <form method="post" id="contact_form" class="contact-form">
+                    <input type="hidden" name="csrfmiddlewaretoken" value="HTYOD1gXevJGdErPbL1w5EK6vMBfi7GWe9gUxxyh6qmEoyPrOapwQeoOMQhCwByh">
+                    <div class="row g-2">
+                        <div class="form-floating mb-1">
+                            <div id="div_id_name">
+                                <input type="text" name="name" id="id_name" class="form-control" placeholder="Your name" required>
+                            </div>
+                        </div>
+                        <div class="form-floating mb-1">
+                            <div id="div_id_phone">
+                                <input type="text" name="phone" id="id_phone" class="form-control phone" placeholder="Your Phone" required>
+                            </div>
+                        </div>
+                        <div class="form-floating">
+                            <div id="div_id_email">
+                                <input type="text" id="id_email" name="email" class="form-control" placeholder="Your email" required>
+                            </div>
+                        </div>
+                    </div>
+                    <button name="contact_form_btn" type="submit" class="btn btn-dark btn-lg rounded-0 px-5 mt-4">Send</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="text-center mb-5" style="margin-top: -40px">
+    <hr class="mb-5">
+    <div class="container">
+        <h2 class="mb-4">Book an appointment</h2>
+        <div class="row justify-content-center">
+            <div class="col-lg-5">
+                <form method="post" id="bookpoint_form" class="contact-form">
+                    <input type="hidden" name="csrfmiddlewaretoken" value="HTYOD1gXevJGdErPbL1w5EK6vMBfi7GWe9gUxxyh6qmEoyPrOapwQeoOMQhCwByh">
+                    <div class="row g-2">
+                        <div class="form-floating mb-1">
+                            <div id="div_id_name">
+                                <input type="text" name="name" id="id_name" class="form-control" placeholder="Your name" required>
+                            </div>
+                        </div>
+                        <div class="form-floating mb-1">
+                            <div id="div_id_phone">
+                                <input type="text" id="id_phone" name="phone" class="form-control rounded-0 phone_book"
+                                    placeholder="Your phone" required>
+                            </div>
+                        </div>
+                        <div class="form-floating mb-1">
+                            <div id="div_id_email">
+                                <input type="text" id="id_email" name="email" class="form-control rounded-0"
+                                    placeholder="Your email" required>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div id="div_id_date">
+                                <input type="datetime-local" id="id_date" name="date" class="form-control"
+                                placeholder="Select date and time" required>
+                            </div>
+                        </div>
+                    </div>
+                    <button name="bookpoint_form_btn" type="submit" class="btn btn-dark btn-lg rounded-0 px-5 mt-4">Send</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<iframe id="map" style="border:0; width: 100%; height: 390px;margin-bottom: -6px;"
+    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3592.992532757931!2d-80.1884213744368!3d25.770810193208213!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88d9b4278118b3ab%3A0x7a70afa297065bd6!2s330%20Biscayne%20Blvd%20Way%2C%20Miami%2C%20FL%2033132%2C%20USA!5e0!3m2!1sen!2sru!4v1635234951050!5m2!1sen!2sru"
+    frameborder="0" allowfullscreen></iframe>
+
+{% endblock %}

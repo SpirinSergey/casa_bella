@@ -1,0 +1,198 @@
+{% extends 'main/layout.html' %}
+{% load static %}
+
+
+
+{% block title %}<title>Casa Bella - Listings</title>{% endblock %}
+
+
+{% block content %}
+<div style="height: 50px"></div>
+    <div class="page-content">
+        <div class="container mb-5">
+            <h2 class="display-4 mb-3 text-uppercase">Listings</h2>
+            <span class="btn rounded-0 btn-lg listings-btn-sp-app" data-bs-toggle="modal"
+                data-bs-target="#exampleModalSpecialApp">Special apportunities</span>
+        </div>
+
+    <div class="container">
+        <form method="get" class="form-listings-search mb-3">
+            <div class="row">
+                <div class="col-lg-4 mb-2">
+                    <select name="unit_type" id="id_unit_type" style="width: 100%;height: 48px;padding: 10px;border-radius: 0;">
+                        <option value="" selected="">Bedrooms</option>
+
+                        <option value="Junior">Junior</option>
+
+                        <option value="One Bed">One Bed</option>
+
+                        <option value="Two Bed">Two Bed</option>
+
+                        <option value="Three Bed">Three Bed</option>
+
+                        <option value="Four Bed">Four Bed</option>
+
+                      </select>
+                </div>
+
+
+                <div class="col-lg-4 mb-3">
+                    <select name="view" id="id_view" style="width: 100%;height: 48px;padding: 10px;border-radius: 0;">
+                        <option value="" selected="">View</option>
+
+                        <option value="Norch">Norch</option>
+
+                        <option value="Northeast">Northeast</option>
+
+                        <option value="East">East</option>
+
+                        <option value="Southeast">Southeast</option>
+
+                        <option value="South">South</option>
+
+                        <option value="Southwest">Southwest</option>
+
+                        <option value="West">West</option>
+
+                        <option value="Northwest">Northwest</option>
+
+                      </select>
+                </div>
+
+                <div class="col-lg-2 mb-3">
+                    <button type="submit" name="search_btn" class="btn btn-dark btn-list-search w-100"
+                        style="margin-right: 5px;height: 48px;">Search</button>
+                    <!-- <button class="btn btn-outline-dark btn-list-search px-5" type="button"
+                        data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight"
+                        aria-controls="offcanvasRight">Building</button> -->
+                </div>
+                <div class="col-lg-2">
+                    <a href="{% url 'listings' %}" class="btn btn-outline-dark btn-list-search w-100">Reset search</a>
+                </div>
+            </div>
+        </form>
+        <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel"
+            style="width: 600px;z-index: 9999;">
+            <div class="offcanvas-header">
+                <h5 id="offcanvasRightLabel">Building</h5>
+                <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
+                    aria-label="Close"></button>
+            </div>
+
+        </div>
+
+        <!-- listings -->
+        <div class="table-responsive">
+            <table class="table table-hover text-center">
+                <thead>
+                    <tr>
+                        <th scope="col">CUBE</th>
+                        <th scope="col">FLOOR</th>
+                        <th scope="col">LINE</th>
+                        <th scope="col">UNIT TYPE</th>
+                        <th scope="col">UNIT</th>
+                        <th scope="col">VIEW</th>
+                        <th scope="col">SQ.FT</th>
+                        <th scope="col">PRICE</th>
+                        <th scope="col">FLOOR PLAN</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    {% for i in listing_object %}
+                    <tr>
+                        <td>{{ i.CUBE }}</td>
+                        <td>{{ i.FLOOR }}</td>
+                        <td>{{ i.LINE }}</td>
+                        <td>{{ i.UNIT_TYPE }}</td>
+                        <td>{{ i.UNIT }}</td>
+                        <td>{{ i.VIEW }}</td>
+                        <td>{{ i.SQ_FT }}</td>
+                        <td>${{ i.PRICE }}</td>
+                        <td><img src="{% static 'main/img/bookmark.png' %}" width="35px" height="30px" alt=""></td>
+                        <td>
+
+                            <a class="text-dark fs-5">
+                                <i class="bi bi-file-earmark-arrow-down"></i>
+                            </a>
+
+                        </td>
+                    </tr>
+                    {% endfor %}
+
+
+                    <div class="loading text-center mt-2 mb-4" style="display: none;">
+                        <div class="spinner-border" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
+                    </div>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModalSpecialApp" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content rounded-0">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Special apportunities</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-sm-6 mb-3">
+                            <div class="card rounded-0">
+                                <div class="card-body text-center">
+                                    <p class="fw-bolder">Crypto currency</p>
+                                    <a style="cursor:pointer;" data-bs-toggle="modal"
+                                    data-bs-target="#exampleModal1" data-bs-dismiss="modal" aria-label="Close">learn more</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 mb-3">
+                            <div class="card rounded-0">
+                                <div class="card-body text-center">
+                                    <p class="fw-bolder">Special prices</p>
+                                    <a style="cursor:pointer;" data-bs-toggle="modal"
+                                    data-bs-target="#exampleModal1" data-bs-dismiss="modal" aria-label="Close">learn more</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 mb-3">
+                            <div class="card rounded-0" style="min-height: 150px;">
+                                <div class="card-body text-center">
+                                    <p class="fw-bolder">Personal offer</p>
+                                    <a style="cursor:pointer;" data-bs-toggle="modal"
+                                    data-bs-target="#exampleModal1" data-bs-dismiss="modal" aria-label="Close">learn more</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 mb-3">
+                            <div class="card rounded-0" style="min-height: 150px;">
+                                <div class="card-body text-center">
+                                    <p class="fw-bolder">Rental available 6 month or 2 times a year</p>
+                                    <a style="cursor:pointer;" data-bs-toggle="modal"
+                                    data-bs-target="#exampleModal1" data-bs-dismiss="modal" aria-label="Close">learn more</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm">
+                            <div class="card rounded-0">
+                                <div class="card-body text-center">
+                                    <p class="fw-bolder">Units are coming fully finished</p>
+                                    <a style="cursor:pointer;" data-bs-toggle="modal"
+                                    data-bs-target="#exampleModal1" data-bs-dismiss="modal" aria-label="Close">learn more</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}
