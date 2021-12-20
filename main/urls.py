@@ -11,6 +11,6 @@ urlpatterns = [
     path('gallery', views.gallery, name='gallery'),
     path('listings', views.listings, name='listings'),
     path('contact', views.contact, name='contact'),
-    path('policy', views.policy, name='policy'),
+    path('privacy-policy', views.privacy, name='privacy-policy'),
     path('disclaimer', views.disclaimer, name='disclaimer'),
     ]

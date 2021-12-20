@@ -2,17 +2,15 @@
 {% load static %}
 
 
-
 {% block title %}<title>Casa Bella - Gallery</title>{% endblock %}
-
+{% block activ-gallery %}active{% endblock %}
 
 {% block content %}
-
     <div class="page-content portfolio-block pb-0" id="gallery">
         <div class="container mb-5">
                     <div style="height: 50px"></div>
                     <h2 class="display-4 mb-5 text-uppercase">Gallery</h2>
-                    <div class="row portfolio-container gallery-1">
+                    <div class="row portfolio-container">
                         {% for i in gal_img %}
                             <div class="col-md-4 mb-4">
                                 <figure class="media media-image equal-md-1-1" data-bp='{"imgSrc": "{{ i.gallery_img.url }}" , "parentGalleryClass": "gallery-1" }'>
@@ -24,7 +22,6 @@
                     </div>
         </div>
     </div>
-
 
 
 {% endblock %}

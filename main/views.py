@@ -46,8 +46,8 @@ def contact(request):
     return render(request, 'main/contact.html')
 
 
-def policy(request):
-    return render(request, 'main/policy.html')
+def privacy(request):
+    return render(request, 'main/privacy-policy.html')
 
 
 def disclaimer(request):

@@ -1,5 +1,17 @@
 {% load static %}
 
+{# Load the tag library #}
+{% load django_bootstrap5 %}
+
+{# Load CSS and JavaScript #}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+
+{# Display django.contrib.messages as Bootstrap alerts #}
+{% bootstrap_messages %}
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -7,15 +19,13 @@
     <meta charset="utf-8">
     {% block title %}{% endblock %}
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <link rel="stylesheet" href="/static/main/css/bootstrap.min.css/">
+
     <link rel="stylesheet" href="/static/main/css/update_style.css">
-    <link rel="stylesheet" href="/static/main/css/Footer-Clean.css">
-    <link rel="stylesheet" href="/static/main/css/simple-line-icons.min.css">
-    <link rel="stylesheet" href="/static/main/js/bootstrap.bundle.js">
-    <link rel="stylesheet" href="/static/main/js/bootstrap.js">
     <link rel="stylesheet" href="/static/main/css/my-btn.css">
+
     <link rel="stylesheet" href="/static/main/css/theme.css">
     <link rel="stylesheet" href="/static/main/css/phone-code.css">
+
     <link rel="stylesheet" href="/static/main/fonts/HelveticaNowText-Regular/style.css">
     <link rel="stylesheet" href="/static/main/fonts/Helvetica-Now-Display-Regular/style.css">
 </head>
@@ -32,20 +42,20 @@
             <button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navcol-1">
                 <ul class="navbar-nav ms-auto navtext">
-                    <li class="nav-item"><a class="nav-link active" href="{% url 'index' %}">HOME</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{% url 'about' %}">ABOUT</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{% url 'developers' %}">DEVELOPERS</a></li>
+                    <li class="nav-item"><a class="nav-link {% block activ-home %}{% endblock %}" href="{% url 'index' %}">HOME</a></li>
+                    <li class="nav-item"><a class="nav-link {% block activ-about %}{% endblock %}" href="{% url 'about' %}">ABOUT</a></li>
+                    <li class="nav-item"><a class="nav-link {% block activ-developers %}{% endblock %}" href="{% url 'developers' %}">DEVELOPERS</a></li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button"
+                    <a class="nav-link dropdown-toggle {% block activ-amenities %}{% endblock %}" id="navbarDropdown" href="#" role="button"
                         data-bs-toggle="dropdown" aria-expanded="false">Amenities</a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                         <li><a class="dropdown-item" href="{% url 'indoor' %}">indoor</a></li>
                         <li><a class="dropdown-item" href="{% url 'outdoor' %}">outdoor</a></li>
                     </ul>
                 </li>
-                    <li class="nav-item"><a class="nav-link" href="{% url 'gallery' %}">GALLERY</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{% url 'listings' %}">AVAILABLE UNITS</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{% url 'contact' %}">CONTACTS</a></li>
+                    <li class="nav-item"><a class="nav-link {% block activ-gallery %}{% endblock %}" href="{% url 'gallery' %}">GALLERY</a></li>
+                    <li class="nav-item"><a class="nav-link {% block activ-listings %}{% endblock %}" href="{% url 'listings' %}">AVAILABLE UNITS</a></li>
+                    <li class="nav-item"><a class="nav-link {% block activ-contact %}{% endblock %}" href="{% url 'contact' %}">CONTACTS</a></li>
                 </ul>
             </div>
         </div>
@@ -61,13 +71,20 @@
         <div class="container text-center py-4 footer-contacts">
             <div class="row align-items-center">
                 <div class="col-lg-6 my-2">
-                    <p class="mb-1 fs-5"><a href="tel:+1 (305) 306-7370" class="text-dark">+1 (305) 306-7370</a></p>
-                    <p class="mb-0 fs-5"><a href="mailto:info@residencewaldorfastoria.com"
-                            class="text-dark">info@residencewaldorfastoria.com</a></p>
+                    <p class="mb-1 fs-5"><a href="tel:+1 (777) 777-7777" class="text-dark">+1 (777) 777-7777</a></p>
+                    <p class="mb-0 fs-5"><a href="mailto:info@casabella.com"
+                            class="text-dark">test@casabella.com</a></p>
                     <div class="messengers-icons mt-2">
                         <p class="mb-0">
-                            <a href="#" class="whatsapp"><i class="bi bi-whatsapp"></i></a>
-                            <a href="#" class="telegram"><i class="bi bi-telegram"></i></a>
+                            <a href="#" class="whatsapp"><svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-whatsapp" viewBox="0 0 16 16">
+                                <path d="M13.601 2.326A7.854 7.854 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.933 7.933 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.898 7.898 0 0 0 13.6 2.326zM7.994 14.521a6.573 6.573 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.557 6.557 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592zm3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.729.729 0 0 0-.529.247c-.182.198-.691.677-.691 1.654 0 .977.71 1.916.81 2.049.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232z"/>
+                                                        </svg>
+                            </a>
+                            <a href="#"><i></i></a>
+                            <a href="#" class="telegram"><svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-telegram" viewBox="0 0 16 16">
+                                <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.287 5.906c-.778.324-2.334.994-4.666 2.01-.378.15-.577.298-.595.442-.03.243.275.339.69.47l.175.055c.408.133.958.288 1.243.294.26.006.549-.1.868-.32 2.179-1.471 3.304-2.214 3.374-2.23.05-.012.12-.026.166.016.047.041.042.12.037.141-.03.129-1.227 1.241-1.846 1.817-.193.18-.33.307-.358.336a8.154 8.154 0 0 1-.188.186c-.38.366-.664.64.015 1.088.327.216.589.393.85.571.284.194.568.387.936.629.093.06.183.125.27.187.331.236.63.448.997.414.214-.02.435-.22.547-.82.265-1.417.786-4.486.906-5.751a1.426 1.426 0 0 0-.013-.315.337.337 0 0 0-.114-.217.526.526 0 0 0-.31-.093c-.3.005-.763.166-2.984 1.09z"/>
+                                                        </svg>
+                            </a>
                         </p>
                     </div>
                 </div>
@@ -158,25 +175,6 @@
                                                 placeholder="Select date and time" required>
                                             </div>
                                         </div>
-                                        <!-- <div class="col-sm-6 mb-2">
-                                            <div id="div_id_time">
-                                                <select class="form-select rounded-0" name="time" id="id_time" placeholder="Select time">
-                                                    <option selected>Select time</option>
-                                                    <option value="09:00">09:00</option>
-                                                    <option value="10:00">10:00</option>
-                                                    <option value="11:00">11:00</option>
-                                                    <option value="12:00">12:00</option>
-                                                    <option value="13:00">13:00</option>
-                                                    <option value="14:00">14:00</option>
-                                                    <option value="15:00">15:00</option>
-                                                    <option value="16:00">16:00</option>
-                                                    <option value="17:00">17:00</option>
-                                                    <option value="18:00">18:00</option>
-                                                    <option value="19:00">19:00</option>
-                                                    <option value="20:00">20:00</option>
-                                                </select>
-                                            </div>
-                                        </div> -->
                                     </div>
                                 </div>
                             </div>
@@ -190,22 +188,36 @@
 
         <div class="footer-info">
             <div class="container text-center">
-                <p class="mb-3">© 2021 Waldorf Astoria Miami, INC</p>
-                <p class="mb-0"><a href="{% url 'policy' %}">Privacy Policy</a></p>
+                <p class="mb-3">© 2021 Casa Bella Miami, INC</p>
+                <p class="mb-0"><a href="{% url 'privacy-policy' %}">Privacy Policy</a></p>
                 <p class="mb-0"><a href="{% url 'disclaimer' %}">Legal Disclaimer</a></p>
             </div>
         </div>
     </footer>
 
 
-    <script src="/static/main/js/vendor.bundle.js"></script>
-    <script src="/static/main/js/index.bundle.js"></script>
-    <script src="/static/main/js/phone-code.js"></script>
-
     <script>
         $(window).on('load',function(){
             $('#messagesuccess').modal('show');
         });
     </script>
+
+    <script>
+        function onEntry(entry) {
+        entry.forEach(change => {
+        if (change.isIntersecting) {
+         change.target.classList.add('element-show');}
+            });
+        }
+
+        let options = {
+          threshold: [0.5] };
+        let observer = new IntersectionObserver(onEntry, options);
+        let elements = document.querySelectorAll('.element-animation');
+
+        for (let elm of elements) {
+          observer.observe(elm);}
+    </script>
+
 </body>
 </html>

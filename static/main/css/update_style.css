@@ -1,9 +1,9 @@
+
 .right-logo-text {
     margin-left: 9%;
     font-size: small;
     letter-spacing: 0.1px;
     line-height: 11px;
-
 }
 
 .image-style {
@@ -32,7 +32,7 @@
 }
 
 .navtext {
-    font-size: 16px;
+    font-size: 15px;
 }
 
 .mygallery {
@@ -72,3 +72,17 @@
     width: 35%;
 }
 
+
+.element-animation {
+  margin: 2rem 0;
+  font-size: 3rem;
+  /* Скроем элемент в начальном состоянии */
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.element-animation.element-show {
+  opacity: 1;
+  transition: all 1.5s;
+  transform: translateY(0%);
+}

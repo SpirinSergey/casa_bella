@@ -8,7 +8,12 @@
     font-style: normal;
   }
 
-h1, h2, h3, h5, nav, li, ul, a {
+h1, h2, h3, h4, h5, nav, li, ul, a {
+    font-family: "Helvetica Now Display", sans-serif;!important;
+    color: #212529;
+}
+
+.my-fonts-disp {
     font-family: "Helvetica Now Display", sans-serif;!important;
     color: #212529;
 }
