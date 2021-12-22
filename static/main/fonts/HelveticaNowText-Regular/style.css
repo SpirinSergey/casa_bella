@@ -8,7 +8,7 @@
     font-style: normal;
   }
 
-p, tr {
+p, tr, li, ul {
     font-family: "Helvetica Now Text", sans-serif;!important;
     color: #212529;
 }

@@ -10,34 +10,32 @@
         <div class="row w-100 align-items-center mx-0">
             <div class="col-lg-6 info">
                 <div class="container text-center">
-                    <h1 class="display-4 text-uppercase mb-3">B&B Italia</h1>
-                    <h5 class="about-text">CasaBella Residences by B&B Italia have collaborated with this iconic brand to bring the exquisite experience of Italian design to life in Miami.</h5>
-                    <br>
-                    <p>Founded in 1966 by Piero Ambrogio Busnelli, B&B Italia stands out both for its representation of contemporary culture as well as its research and innovation, which has allowed the brand to create products with unique style and artistry. The fruitful partnership between the company’s Research & Development Center, a workshop for ideas and excellence, and the best international design professionals has resulted in the creation of iconic products which have radically helped define the history of design. B&B Italia has been honored with numerous awards in its history, including a four-time win of the most coveted award in Italian industrial design: the “Compasso d’Oro.”</p>
+                     <h1 class="display-5 text-uppercase mb-4 fw-bolder">B&B Italia</h1>
+                    <div class="px-4">
+                        <p class="fs-5 mb-3">CasaBella Residences by B&B Italia have collaborated with this iconic brand to bring the exquisite experience of Italian design to life in Miami.</p>
+
+                    <p class="fs-5">Founded in 1966 by Piero Ambrogio Busnelli, B&B Italia stands out both for its representation of contemporary culture as well as its research and innovation, which has allowed the brand to create products with unique style and artistry. The fruitful partnership between the company’s Research & Development Center, a workshop for ideas and excellence, and the best international design professionals has resulted in the creation of iconic products which have radically helped define the history of design. B&B Italia has been honored with numerous awards in its history, including a four-time win of the most coveted award in Italian industrial design: the “Compasso d’Oro.”</p>
+                    </div>
                 </div>
             </div>
             <div class="col-lg px-0">
-                <div class="image-style" style="background-image: url({% static 'main/img/about-block-1.jpg' %});"></div>
+                <div class="image-style" style="background-image: url({% static 'main/img/about-block-1.jpg' %}); height: 100vh;"></div>
             </div>
         </div>
     </section>
 
-   <div style="height: 40px;"> </div>
-
-    <section>
-        <div>
-            <p class="display-4 mb-3">Design for Life</p>
+    <section class="mb-5">
+        <div class="container mb-4">
+            <p class="display-5 pb-2">Design for Life</p>
         </div>
         <div>
-                <iframe  class="my-video" src="https://www.youtube.com/embed/guVHII0gXqU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <iframe  class="my-video" src="https://www.youtube.com/embed/guVHII0gXqU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
     </section>
 
-    <div style="height: 100px;"> </div>
-
-    <section class="section-style">
+    <section>
         <div class="row w-100 align-items-center mx-0">
-                        <div class="col-lg px-0">
+            <div class="col-lg px-0">
                 <div class="image-style" style="background-image: url({% static 'main/img/1block.jpg' %}); margin-left: 6%"></div>
             </div>
             <div class="col-lg-6 info">
@@ -49,14 +47,16 @@
         </div>
     </section>
 
-    <div style="height: 60px;"> </div>
-
-    <section>
-        <div>
-            <img class="about-block-3" src="{% static 'main/img/about-block-4.jpg' %}" alt="">
+    <section style="padding-bottom: 0">
+        <div style="
+                background-image: url({% static 'main/img/about-block-4.jpg' %});
+                height: 90vh;
+                background-size: cover;
+                background-attachment: fixed;
+                background-position: bottom;
+                ">
+{#            <img class="about-block-3" src="{% static 'main/img/about-block-4.jpg' %}" alt="">#}
         </div>
     </section>
-
-<div style="height: 50px;"> </div>
 
 {% endblock %}

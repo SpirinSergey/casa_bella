@@ -6,13 +6,14 @@ class Gallery(models.Model):
 
 
 class Listing(models.Model):
-    CUBE = models.IntegerField()
-    FLOOR = models.IntegerField()
-    LINE = models.IntegerField()
-    UNIT_TYPE = models.CharField(max_length=15)
-    UNIT = models.IntegerField()
-    VIEW = models.CharField(max_length=15)
-    SQ_FT = models.IntegerField()
-    PRICE = models.IntegerField()
+    FLOOR = models.IntegerField(default=0)
+    UNIT_TYPE = models.CharField(null=True, max_length=20)
+    BATHROOMS = models.CharField(null=True, max_length=5)
+    UNIT = models.IntegerField(default=0)
+    INTERIOR = models.CharField(null=True, max_length=25)
+    TERRACE = models.CharField(null=True, max_length=25)
+    TOTAL = models.CharField(null=True, max_length=25)
+    PRICE = models.CharField(null=True, max_length=25)
+    FLOOR_PLANE = models.FileField(upload_to='floor_plane/', blank=True,)
 
 

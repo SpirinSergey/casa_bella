@@ -247,13 +247,12 @@ body {
 
 /* Listings page */
 .listings-btn-sp-app {
-  background-color: #cfeaf3;
+  background-color: #feff58;
 }
 .listings-btn-sp-app:hover {
-  color: #fff;
-  background-color: #4ccbf5;
+  background-color: #feff18;
   box-shadow: 0 8px 19px -6px #00000066;
-  text-shadow: 0 1px 5px #0000007a;
+  text-shadow: none;
   -webkit-transition: all 0.5s ease;
   -moz-transition: all 0.5s ease;
   transition: all 0.5s ease;

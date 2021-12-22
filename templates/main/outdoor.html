@@ -6,44 +6,42 @@
 {% block activ-amenities %}active{% endblock %}
 
 {% block content %}
-    <section class="section-style">
+    <section class="section-style" style="padding-bottom: 0">
         <div class="row w-100 align-items-center mx-0">
             <div class="col-lg-6 info">
                 <div class="container text-center">
-                    <h1 class="display-4 mb-3">OUTDOOR AMENITIES</h1>
-                    <br>
+                    <h1 class="display-5 mb-3">OUTDOOR AMENITIES</h1>
                     <h3>A stunning 12th floor pool deck, featuring Italian-inspired gardens
                         designed by world-renowned landscape architect Enzo Enea, luxury
                         spa, and 78-foot lap pool with incredible views of Biscayne Bay.</h3>
                 </div>
             </div>
             <div class="col-lg px-0">
-                <div class="image-style" style="background-image: url({% static 'main/img/outdoor-1.jpg' %});"></div>
+                <div class="image-style" style="background-image: url({% static 'main/img/outdoor-1.jpg' %}); height: 100vh"></div>
             </div>
         </div>
     </section>
 
-    <section class="section-style">
+    <section class="section-style pb-0">
         <div class="row w-100 align-items-center mx-0">
                             <div class="col-lg px-0">
-                    <div class="image-style" style="background-image: url({% static 'main/img/outdoor-2.jpg' %});"></div>
+                    <div class="image-style" style="background-image: url({% static 'main/img/outdoor-2.jpg' %}); height: 100vh"></div>
                 </div>
             <div class="col-lg-6 info">
 
-                <div class="container text-center">
-                    <ul  style="padding-left: 200px">
-                        <li style="text-align: left"><h5>Poolside bar and Mediterranean café</h5></li>
-                        <li style="text-align: left"><h5>Private cabanas and shaded lounge areas</h5></li>
-                        <li style="text-align: left"><h5>Towel service and sun-care kiosk</h5></li>
-                        <li style="text-align: left"><h5>Open-air yoga lawn</h5></li>
-                        <li style="text-align: left"><h5>Pickleball court</h5></li>
-                        <li style="text-align: left"><h5>Private dining with dedicated space for outdoor grilling</h5></li>
-                        <li style="text-align: left"><h5>World-class artwork throughout common areas</h5></li>
+                <div class="container text-center fs-4">
+                    <ul style="padding-left: 16px">
+                        <li style="text-align: left"><p>Poolside bar and Mediterranean café</p></li>
+                        <li style="text-align: left"><p>Private cabanas and shaded lounge areas</p></li>
+                        <li style="text-align: left"><p>Towel service and sun-care kiosk</p></li>
+                        <li style="text-align: left"><p>Open-air yoga lawn</p></li>
+                        <li style="text-align: left"><p>Pickleball court</p></li>
+                        <li style="text-align: left"><p>Private dining with dedicated space for outdoor grilling</p></li>
+                        <li style="text-align: left"><p>World-class artwork throughout common areas</p></li>
                     </ul>
                 </div>
             </div>
         </div>
     </section>
-    <div style="height: 100px;"> </div>
 
 {% endblock %}
