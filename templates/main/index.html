@@ -2,7 +2,7 @@
 {% load static %}
 
 
-{% block title %}<title>Casa Bella - Home</title>{% endblock %}
+{% block title %}<title>Casa Bella Tower</title>{% endblock %}
 {% block activ-home %}active{% endblock %}
 
 {% block content %}
@@ -26,10 +26,10 @@
                 <div class="image-style" style="background-image: url({% static 'main/img/1block.jpg' %}); height: 100vh;"></div>
             </div>
             <div class="col-lg-6 info">
-                <div class="container text-center">
+                <div class="container text-center element-animation">
                     <h3 class="display-4 text-uppercase mb-3">About Us</h3>
                     <p class="fs-4 about-text text-uppercase">The history of our exciting residence</p>
-                    <a href="#" class="fs-5 double-border-button text-dark text-uppercase">learn more</a>
+                    <a href="{% url 'about' %}" class="fs-5 double-border-button text-dark text-uppercase">learn more</a>
                 </div>
             </div>
         </div>
@@ -47,7 +47,7 @@
 
     <section>
         <div class="text-center ">
-            <h1 class="display-5 text-uppercase mb-3 element-animation">Amenities</h1>
+            <h1 class="display-5 text-uppercase mb-3">Amenities</h1>
             <p class="fs-4 about-text text-uppercase">We have prepared all possible amenities for your pleasure.</p>
         </div>
         <div class="block-style">
@@ -77,8 +77,8 @@
     <section class="section-style">
         <div class="row w-100 align-items-center mx-0">
             <div class="col-lg-6 info">
-                <div class="container text-center">
-                    <h3 class="display-5 text-uppercase mb-3  element-animation">Welcome to <br>Lorem ipsum dolor sit amet.</h3>
+                <div class="container text-center element-animation">
+                    <h3 class="display-5 text-uppercase mb-3">Welcome to <br>Lorem ipsum dolor sit amet.</h3>
                     <a href="{% url 'listings' %}" class="fs-5 double-border-button text-dark text-uppercase">Show listings</a>
                 </div>
             </div>

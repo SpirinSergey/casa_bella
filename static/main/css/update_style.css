@@ -82,3 +82,13 @@
 section {
     padding-bottom: 60px;
 }
+
+/*иконки*/
+
+.whatsapp:hover, .facebook:hover,
+.instagram:hover, .telegram:hover {
+    fill: #727272;!important;
+    text-decoration: none;
+    transition-duration: 1s;
+    color: #727272;
+}

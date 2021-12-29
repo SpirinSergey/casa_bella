@@ -1,135 +1,235 @@
-{% extends 'main/layout.html' %}
 {% load static %}
 
+{# Load the tag library #}
+{% load django_bootstrap5 %}
+
+{# Load CSS and JavaScript #}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+
+{# Display django.contrib.messages as Bootstrap alerts #}
+{% bootstrap_messages %}
 
 
-{% block title %}<title>Casa Bella - Contacts</title>{% endblock %}
-{% block activ-contact %}active{% endblock %}
 
-{% block content %}
-    <div class="page-content contact-block pb-0">
-        <div class="container">
-            <h2 class="display-4 mb-5 text-uppercase">Contact</h2>
-        <div class="row my-fonts-disp">
-            <div class="col-lg-7 mb-4">
-                <h4 class="fs-3">Contacts</h4>
-                <hr class="mb-4">
-                <div class="row">
-                    <div class="col mb-4">
-                        <h5 class="fw-bolder"><i class="bi bi-geo-alt icon-title"></i> Location:</h5>
-                        <p style="font-size: 18px;">
-                            330 Biscayne Blvd, Miami
-                            <br>Florida 33132
-                        </p>
-                    </div>
-                    <div class="col mb-4">
-                        <h5 class="fw-bolder"><i class="bi bi-envelope icon-title"></i> Email:</h5>
-                        <p style="font-size: 18px;"><a href="#">info@casabella.com</a></p>
-                    </div>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    {% block title %}{% endblock %}
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="/static/main/css/update_style.css">
+    <link rel="stylesheet" href="/static/main/css/my-btn.css">
+
+    <link rel="stylesheet" href="/static/main/css/theme.css">
+    <link rel="stylesheet" href="/static/main/css/phone-code.css">
+
+    <link rel="shortcut icon" type="image/png" href="{% static "main/img/favicon.ico" %}">
+
+    <link rel="stylesheet" href="/static/main/fonts/HelveticaNowText-Regular/style.css">
+    <link rel="stylesheet" href="/static/main/fonts/Helvetica-Now-Display-Regular/style.css">
+
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+</head>
+
+<body>
+    <header>
+        <nav class="navbar navbar-light navbar-expand-lg fixed-top bg-white clean-navbar shadow" >
+            <div class="container">
+                <div class="col-2"><a href="{% url 'index' %}" class="logo-svg me-auto me-lg-0">
+                        <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 350 30.944"><defs><style>.cls-1{fill:#1a1818;}</style></defs><path class="cls-1" d="M42.078,28.133a4.9,4.9,0,0,0,1.538-3.889V22.289a4.516,4.516,0,0,1-2.453.874l-2.829.333a5.893,5.893,0,0,0-2.974.977,2.552,2.552,0,0,0-.894,2.1,2.619,2.619,0,0,0,.936,2.142,4.126,4.126,0,0,0,2.683.77A5.83,5.83,0,0,0,42.078,28.133Zm2.246,4.6a7.775,7.775,0,0,1-.583-2.62q-2.163,3.119-6.9,3.119A8.674,8.674,0,0,1,31.2,31.523a5.77,5.77,0,0,1-2.1-4.741q0-5.867,8.235-6.7l3.244-.291a4.8,4.8,0,0,0,2.329-.77,2.022,2.022,0,0,0,.707-1.684,2.316,2.316,0,0,0-.894-2.017,5.314,5.314,0,0,0-3.015-.645,5.448,5.448,0,0,0-3.286.77,3.56,3.56,0,0,0-1.165,2.64H30.1q.457-7.319,9.649-7.32,8.944,0,8.943,6.447V28.653a7.285,7.285,0,0,0,.873,4.076Z" transform="translate(-1.5 -2.45)"></path>
+                            <path class="cls-1" d="M49.335,25.908h5.116a3.855,3.855,0,0,0,1.31,2.828,5.8,5.8,0,0,0,3.473.832q4.242,0,4.243-2.579a2.033,2.033,0,0,0-.916-1.788,9.064,9.064,0,0,0-3.285-1.041l-2.454-.415q-7.029-1.164-7.029-6.489a5.6,5.6,0,0,1,2.329-4.762,10.865,10.865,0,0,1,6.571-1.726q9.194,0,9.484,7.279h-4.95a3.319,3.319,0,0,0-1.206-2.724,5.665,5.665,0,0,0-3.328-.811q-3.742,0-3.744,2.5a1.964,1.964,0,0,0,.832,1.685,6.881,6.881,0,0,0,2.746.936l2.7.415a11.916,11.916,0,0,1,5.678,2.246,5.381,5.381,0,0,1,1.768,4.284,5.725,5.725,0,0,1-2.5,4.991,12.133,12.133,0,0,1-7.029,1.748Q49.751,33.312,49.335,25.908Z" transform="translate(-1.5 -2.45)"></path><path class="cls-1" d="M82.063,28.133A4.9,4.9,0,0,0,83.6,24.244V22.289a4.516,4.516,0,0,1-2.454.874l-2.828.333a5.885,5.885,0,0,0-2.973.977,2.55,2.55,0,0,0-.9,2.1,2.619,2.619,0,0,0,.936,2.142,4.123,4.123,0,0,0,2.682.77A5.834,5.834,0,0,0,82.063,28.133Zm2.246,4.6a7.757,7.757,0,0,1-.582-2.62q-2.165,3.119-6.905,3.119a8.674,8.674,0,0,1-5.636-1.705,5.77,5.77,0,0,1-2.1-4.741q0-5.867,8.235-6.7l3.244-.291a4.808,4.808,0,0,0,2.33-.77A2.022,2.022,0,0,0,83.6,17.34a2.318,2.318,0,0,0-.894-2.017,5.314,5.314,0,0,0-3.015-.645,5.448,5.448,0,0,0-3.286.77,3.564,3.564,0,0,0-1.165,2.64H70.083q.459-7.319,9.65-7.32,8.943,0,8.943,6.447V28.653a7.293,7.293,0,0,0,.873,4.076Z" transform="translate(-1.5 -2.45)"></path><path class="cls-1" d="M109.68,28.071A5.444,5.444,0,0,0,113.3,27.01,3.742,3.742,0,0,0,114.546,24q0-4.118-4.866-4.118h-7.945v8.194ZM101.735,7.732v7.736H109.1a4.623,4.623,0,0,0,3.265-1.061,3.8,3.8,0,0,0,1.144-2.931,3.428,3.428,0,0,0-1.165-2.746,4.827,4.827,0,0,0-3.244-1Zm17.2,12.186a7.313,7.313,0,0,1,1.353,4.326,7.733,7.733,0,0,1-2.642,6.259Q115,32.729,109.97,32.729H96.12V3.115h13.393q4.657,0,7.112,2.121a6.962,6.962,0,0,1,2.455,5.532,6.666,6.666,0,0,1-3.952,6.364A7.637,7.637,0,0,1,118.933,19.918Z" transform="translate(-1.5 -2.45)"/><path class="cls-1" d="M126.094,19.961h10.772a6.246,6.246,0,0,0-1.746-3.744,5.037,5.037,0,0,0-3.661-1.373Q126.844,14.844,126.094,19.961Zm16.013,3.659H126.052a6.53,6.53,0,0,0,1.727,4.139,5.288,5.288,0,0,0,3.846,1.393,4.89,4.89,0,0,0,4.909-3.078h5.032a8.963,8.963,0,0,1-3.493,5.22,10.745,10.745,0,0,1-6.489,1.934,10.233,10.233,0,0,1-7.736-3.078A11.278,11.278,0,0,1,120.9,22a11.382,11.382,0,0,1,2.911-8.153,10.184,10.184,0,0,1,7.7-3.078,9.872,9.872,0,0,1,7.736,3.2,12.111,12.111,0,0,1,2.869,8.4Z" transform="translate(-1.5 -2.45)"/><rect class="cls-1" x="141.714" y="0.665" width="5.24" height="29.614"/><rect class="cls-1" x="149.005" y="0.665" width="5.24" height="29.614"/><path class="cls-1" d="M169.65,28.133a4.9,4.9,0,0,0,1.539-3.889V22.289a4.52,4.52,0,0,1-2.454.874l-2.828.333a5.893,5.893,0,0,0-2.974.977,2.551,2.551,0,0,0-.894,2.1,2.621,2.621,0,0,0,.935,2.142,4.126,4.126,0,0,0,2.683.77A5.828,5.828,0,0,0,169.65,28.133Zm2.246,4.6a7.782,7.782,0,0,1-.582-2.62q-2.164,3.119-6.9,3.119a8.684,8.684,0,0,1-5.637-1.705,5.77,5.77,0,0,1-2.1-4.741q0-5.867,8.236-6.7l3.244-.291a4.8,4.8,0,0,0,2.329-.77,2.022,2.022,0,0,0,.707-1.684,2.318,2.318,0,0,0-.894-2.017,5.318,5.318,0,0,0-3.015-.645,5.451,5.451,0,0,0-3.287.77,3.559,3.559,0,0,0-1.164,2.64h-5.157q.458-7.319,9.648-7.32,8.943,0,8.944,6.447V28.653a7.294,7.294,0,0,0,.872,4.076Z" transform="translate(-1.5 -2.45)"/><path class="cls-1" d="M5.493,29.193Q1.5,24.993,1.5,17.922q0-7.112,3.951-11.313A13.6,13.6,0,0,1,15.85,2.45a14.2,14.2,0,0,1,8.859,2.786,12.321,12.321,0,0,1,4.575,8.069h-5.7a7.725,7.725,0,0,0-2.767-4.429A8.02,8.02,0,0,0,15.85,7.357a7.558,7.558,0,0,0-6.219,2.808q-2.265,2.807-2.267,7.757,0,4.992,2.247,7.778a7.566,7.566,0,0,0,6.239,2.787,8.006,8.006,0,0,0,5.282-1.831,7.715,7.715,0,0,0,2.661-5.074h5.616A12.089,12.089,0,0,1,25,30.317a14.144,14.144,0,0,1-9.15,3.077A13.558,13.558,0,0,1,5.493,29.193Z" transform="translate(-1.5 -2.45)"/><path class="cls-1" d="M277.02,5.158h4.453V32.1H277.02Zm-.891,27.832h6.235V4.267h-6.235Z" transform="translate(-1.5 -2.45)"/><path class="cls-1" d="M215.465,28.161a6.749,6.749,0,0,1-.946,2.336c-1.155,1.707-3.387,1.05-5.225,1.208l-.079-.1.053-13.313c2-.1,4.227-.235,5.462,1.576C216.042,22.173,216.016,25.509,215.465,28.161ZM213.914,7c1,2.047.816,4.884.422,7.116a3.6,3.6,0,0,1-2.1,2.467,7,7,0,0,1-2.967.446l-.053-11.5C210.947,5.555,213.1,5.134,213.914,7Zm46.318,11.289c2-.1,4.228-.235,5.462,1.576,1.312,2.309,1.286,5.645.733,8.3a6.688,6.688,0,0,1-.944,2.336c-1.155,1.707-3.387,1.05-5.225,1.208l-.079-.1ZM264.88,7c1,2.047.814,4.884.42,7.116a3.6,3.6,0,0,1-2.1,2.467,6.985,6.985,0,0,1-2.966.446l-.053-11.5C261.913,5.555,264.066,5.134,264.88,7Zm-13.387,8.393V31.654h-1.742v1.305h11.794c3.386-.026,7.011.164,9.74-1.647a6.971,6.971,0,0,0,2.811-8.481c-.947-3.255-4.466-4.988-7.615-5.33a8.626,8.626,0,0,0,6.275-4.148,5.629,5.629,0,0,0-.1-5.173C271,5.239,267.82,4.351,264.643,4.22H249.751V5.526h1.742v7.113a5.689,5.689,0,0,0-1.351-2.779,3.476,3.476,0,0,0-3.334-1.1A2.528,2.528,0,0,0,245,10.571a2.349,2.349,0,0,0,3.072,2.86,2.651,2.651,0,0,0,1.548-1.943,2.327,2.327,0,0,1,.212,2.232,3.265,3.265,0,0,1-2.153,1.734,39.445,39.445,0,0,1-6.354.551,9.078,9.078,0,0,0-6.695,3.78,6.482,6.482,0,0,0-.5,6.433,3.213,3.213,0,0,0,2.179,1.47,2.485,2.485,0,0,0,2.337-.918,2.635,2.635,0,0,0,.394-2.757,2.4,2.4,0,0,0-2.021-1.34,2.32,2.32,0,0,0-2.154,1.182,2.113,2.113,0,0,1,.316-.971c1.312-1.944,3.807-2.31,5.986-1.838a4.733,4.733,0,0,1,3.309,3.1,5.566,5.566,0,0,1-1.393,4.83,8.279,8.279,0,0,1-8.953,2.049,5.8,5.8,0,0,1-3.414-4.07c-.471-2.441-.525-5.487.579-7.666,1.128-1.97,3.308-2.181,5.3-2.311.183-.236.051-.656.1-.971a5.431,5.431,0,0,1-2.677-.6,3.858,3.858,0,0,1-1.576-3.046c-.131-2.336-.5-5.225,1.838-6.485a4.686,4.686,0,0,1,4.437.236,3.121,3.121,0,0,1,1.549,2.811,3.4,3.4,0,0,0-1.6-1.076,2.819,2.819,0,0,0-1.917.209,2.545,2.545,0,0,0-1.366,2,2.581,2.581,0,0,0,.789,2.153,3.092,3.092,0,0,0,3.123.762,3.468,3.468,0,0,0,2.154-2.286,5.184,5.184,0,0,0-2.1-5.513c-2.864-1.89-7.327-1.681-10.188.078a6.15,6.15,0,0,0-3.2,5.568c.027,2.52,2.337,4.593,4.464,5.486a8.386,8.386,0,0,0-5.855,3.492,7.4,7.4,0,0,0-1.211,3.875,7.763,7.763,0,0,0-.227-.829c-.946-3.255-4.463-4.988-7.615-5.33a8.629,8.629,0,0,0,6.277-4.148,5.626,5.626,0,0,0-.106-5.173c-1.655-2.941-4.83-3.829-8.008-3.96H198.787V5.526h1.741V31.654h-1.741v1.305h11.794c3.388-.026,7.011.164,9.74-1.647a6.656,6.656,0,0,0,3.219-5.233,7.972,7.972,0,0,0,.662,1.95c1.654,3.676,5.54,4.937,9.189,5.331,4.386.209,8.874-.447,11.369-4.307a8.184,8.184,0,0,0,.394-7.745,10.261,10.261,0,0,0,3.044-1.13,7.334,7.334,0,0,0,3.126-4.067C251.393,15.874,251.447,15.634,251.493,15.392Z" transform="translate(-1.5 -2.45)"></path><path class="cls-1" d="M293.138,32.1h-4.9V8.275h-4.1V5.158h13.093V8.275H293.15Zm4.988-22.934v-4.9H283.253v4.9h4.083l.015,23.825h6.68l-.017-23.825Z" transform="translate(-1.5 -2.45)"/><path class="cls-1" d="M339.962,20.565l1.434-9.013,1.57,9.013Zm1.3-12.378-2.313,13.282h5.025L341.637,8.187Z" transform="translate(-1.5 -2.45)"></path><path class="cls-1" d="M326.977,5.158h4.452V32.1h-4.452Zm-.891,27.832h6.234V4.267h-6.234Z" transform="translate(-1.5 -2.45)"></path><path class="cls-1" d="M345.811,32.1l-1.383-7.524H338.42L337.09,32.1h-3l4.361-26.941h7.577L350.463,32.1ZM337.729,4.267l-4.6,28.723h4.759l1.25-7.525h4.653l1.249,7.525h6.46L346.794,4.267Z" transform="translate(-1.5 -2.45)"/><path class="cls-1" d="M324.4,28.983V32.1h-9.207V5.158h4.453V28.983ZM320.538,4.267H314.3V32.99h10.99v-4.9h-4.754Z" transform="translate(-1.5 -2.45)"/><path class="cls-1" d="M307.688,32.1,306.3,24.575H300.3L298.967,32.1h-3.006l4.361-26.941H307.9L312.339,32.1ZM299.605,4.267l-4.6,28.723h4.758l1.25-7.525h4.652l1.249,7.525h6.46l-4.7-28.723Z" transform="translate(-1.5 -2.45)"/><path class="cls-1" d="M301.837,20.565l1.437-9.013,1.567,9.013Zm1.3-12.378-2.311,13.282h5.023L303.513,8.187Z" transform="translate(-1.5 -2.45)"/><path class="cls-1" d="M185.061,29.979a1.7,1.7,0,0,0,1.388-.625,2.66,2.66,0,0,0,.5-1.727,2.486,2.486,0,0,0-.5-1.662,1.9,1.9,0,0,0-2.764.011,2.6,2.6,0,0,0-.512,1.7,2.546,2.546,0,0,0,.512,1.688A1.676,1.676,0,0,0,185.061,29.979Zm2.389-4.765a3.6,3.6,0,0,1,.8,2.464,3.585,3.585,0,0,1-.8,2.451,2.723,2.723,0,0,1-2.151.925,2.393,2.393,0,0,1-2.152-1.125v.976h-1.2V22H183.2v3.353a2.39,2.39,0,0,1,2.1-1.051A2.718,2.718,0,0,1,187.45,25.214Z" transform="translate(-1.5 -2.45)"/><path class="cls-1" d="M193.429,24.45h1.326l-2.627,7.268a2.563,2.563,0,0,1-.864,1.3,2.638,2.638,0,0,1-1.525.376,5.275,5.275,0,0,1-.651-.038V32.343h.626a1.1,1.1,0,0,0,1.126-.775c.016-.05.043-.13.081-.239s.069-.191.094-.25l-2.389-6.629h1.364l.749,2.215q.6,1.851.963,3.088.489-1.587.976-3.088Z" transform="translate(-1.5 -2.45)"/></svg>
+                    </a>
                 </div>
-                <div class="row">
-                    <div class="col mb-4">
-                        <h5 class="fw-bolder"><i class="bi bi-telephone icon-title"></i> Call:</h5>
-                        <p style="font-size: 18px;"><a href="tel:+1 (305) 647-2650">+1 (777) 777-7777</a></p>
-                    </div>
-                    <div class="col">
-                        <h5 class="fw-bolder"><i class="bi bi-globe icon-title"></i> Messengers:</h5>
-                        <div class="messengers-icons">
-                            <p>
-                                <a href="#" class="whatsapp"><svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-whatsapp" viewBox="0 0 16 16">
-                                    <path d="M13.601 2.326A7.854 7.854 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.933 7.933 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.898 7.898 0 0 0 13.6 2.326zM7.994 14.521a6.573 6.573 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.557 6.557 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592zm3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.729.729 0 0 0-.529.247c-.182.198-.691.677-.691 1.654 0 .977.71 1.916.81 2.049.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232z"/>
-                                                            </svg>
-                                </a>
-                                <a href="#" class="telegram"><svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-telegram" viewBox="0 0 16 16">
-                                    <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.287 5.906c-.778.324-2.334.994-4.666 2.01-.378.15-.577.298-.595.442-.03.243.275.339.69.47l.175.055c.408.133.958.288 1.243.294.26.006.549-.1.868-.32 2.179-1.471 3.304-2.214 3.374-2.23.05-.012.12-.026.166.016.047.041.042.12.037.141-.03.129-1.227 1.241-1.846 1.817-.193.18-.33.307-.358.336a8.154 8.154 0 0 1-.188.186c-.38.366-.664.64.015 1.088.327.216.589.393.85.571.284.194.568.387.936.629.093.06.183.125.27.187.331.236.63.448.997.414.214-.02.435-.22.547-.82.265-1.417.786-4.486.906-5.751a1.426 1.426 0 0 0-.013-.315.337.337 0 0 0-.114-.217.526.526 0 0 0-.31-.093c-.3.005-.763.166-2.984 1.09z"/>
-                                                            </svg>
-                                </a>
-                                <a href="https://www.facebook.com/Casa-Bella-Sales-Gallery-101437069082078" class="facebook"><svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-telegram" viewBox="0 0 16 16">
-                                    <path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z"/>
-                                                            </svg>
-                                </a>
-                                <a href="https://www.instagram.com/casabellasalesgallery" class="instagram"><svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-telegram" viewBox="0 0 16 16">
-                                    <path d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.917 3.917 0 0 0-1.417.923A3.927 3.927 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.916 3.916 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.926 3.926 0 0 0-.923-1.417A3.911 3.911 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0h.003zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599.28.28.453.546.598.92.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.47 2.47 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.478 2.478 0 0 1-.92-.598 2.48 2.48 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233 0-2.136.008-2.388.046-3.231.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92.28-.28.546-.453.92-.598.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045v.002zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92zm-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217zm0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334z"/>
-                                                            </svg>
-                                </a>
+                <button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse" id="navcol-1">
+                    <ul class="navbar-nav ms-auto navtext">
+                        <li class="nav-item"><a class="nav-link {% block activ-home %}{% endblock %}" href="{% url 'index' %}">HOME</a></li>
+                        <li class="nav-item"><a class="nav-link {% block activ-about %}{% endblock %}" href="{% url 'about' %}">ABOUT</a></li>
+                        <li class="nav-item"><a class="nav-link {% block activ-developers %}{% endblock %}" href="{% url 'developers' %}">DEVELOPERS</a></li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle {% block activ-amenities %}{% endblock %}" id="navbarDropdown" href="#" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">Amenities</a>
+                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="{% url 'indoor' %}">indoor</a></li>
+                                <li><a class="dropdown-item" href="{% url 'outdoor' %}">outdoor</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item"><a class="nav-link {% block activ-gallery %}{% endblock %}" href="{% url 'gallery' %}">GALLERY</a></li>
+                        <li class="nav-item"><a class="nav-link {% block activ-listings %}{% endblock %}" href="{% url 'listings' %}">AVAILABLE UNITS</a></li>
+                        <li class="nav-item"><a class="nav-link {% block activ-contact %}{% endblock %}" href="{% url 'contact' %}">CONTACTS</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+<main>
+    <div style="padding-top: 55px">
+        <div class="page-content contact-block pb-0">
+            <div class="container">
+                <h2 class="display-4 mb-5 text-uppercase">Contact</h2>
+            <div class="row my-fonts-disp">
+                <div class="col-lg-7 mb-4">
+                    <h4 class="fs-3">Contacts</h4>
+                    <hr class="mb-4">
+                    <div class="row">
+                        <div class="col mb-4">
+                            <h5 class="fw-bolder"><i class="bi bi-geo-alt icon-title"></i> Location:</h5>
+                            <p style="font-size: 18px;">
+                                330 Biscayne Blvd, Miami
+                                <br>Florida 33132
                             </p>
                         </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-5 mb-4">
-                <h4 class="fs-3">Write to us</h4>
-                <hr class="mb-4">
-
-                <form method="post" id="contact_form" class="contact-form my-font">
-                    <input type="hidden" name="csrfmiddlewaretoken" value="HTYOD1gXevJGdErPbL1w5EK6vMBfi7GWe9gUxxyh6qmEoyPrOapwQeoOMQhCwByh">
-                    <div class="row g-2 my-font-contact">
-                        <div class="form-floating mb-1">
-                            <div id="div_id_name">
-                                <input type="text" name="name" id="id_name" class="form-control" placeholder="Your name" required>
-                            </div>
-                        </div>
-                        <div class="form-floating mb-1">
-                            <div id="div_id_phone">
-                                <input type="tel" name="phone" id="id_phone" class="form-control phone" placeholder="Your Phone" required>
-                            </div>
-                        </div>
-                        <div class="form-floating">
-                            <div id="div_id_email">
-                                <input type="text" id="id_email" name="email" class="form-control" placeholder="Your email" required>
-                            </div>
+                        <div class="col mb-4">
+                            <h5 class="fw-bolder"><i class="bi bi-envelope icon-title"></i> Email:</h5>
+                            <p style="font-size: 18px;"><a href="#" class="whatsapp">info@casabellatower.com</a></p>
                         </div>
                     </div>
-                    <button name="contact_form_btn" type="submit" class="btn btn-dark btn-lg rounded-0 px-5 mt-4">Send</button>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="text-center mb-5 my-font" style="margin-top: -40px">
-    <hr class="mb-5">
-    <div class="container">
-        <h2 class="mb-4">Book an appointment</h2>
-        <div class="row justify-content-center">
-            <div class="col-lg-5">
-                <form method="post" id="bookpoint_form" class="contact-form">
-                    <input type="hidden" name="csrfmiddlewaretoken" value="HTYOD1gXevJGdErPbL1w5EK6vMBfi7GWe9gUxxyh6qmEoyPrOapwQeoOMQhCwByh">
-                    <div class="row g-2 my-font-contact">
-                        <div class="form-floating mb-1">
-                            <div id="div_id_name">
-                                <input type="text" name="name" id="id_name" class="form-control" placeholder="Your name" required>
-                            </div>
-                        </div>
-                        <div class="form-floating mb-1">
-                            <div id="div_id_phone">
-                                <input type="text" id="id_phone" name="phone" class="form-control rounded-0 phone_book"
-                                    placeholder="Your phone" required>
-                            </div>
-                        </div>
-                        <div class="form-floating mb-1">
-                            <div id="div_id_email">
-                                <input type="text" id="id_email" name="email" class="form-control rounded-0"
-                                    placeholder="Your email" required>
-                            </div>
+                    <div class="row">
+                        <div class="col mb-4">
+                            <h5 class="fw-bolder"><i class="bi bi-telephone icon-title"></i> Call:</h5>
+                            <p style="font-size: 18px;"><a href="tel:+1 (305) 647-2650" class="whatsapp">+1 (777) 777-7777</a></p>
                         </div>
                         <div class="col">
-                            <div id="div_id_date">
-                                <input type="datetime-local" id="id_date" name="date" class="form-control"
-                                placeholder="Select date and time" required>
+                            <h5 class="fw-bolder"><i class="bi bi-globe icon-title"></i>Messengers:</h5>
+                            <div class="messengers-icons">
+                                <p>
+                                    <a href="#" style="text-decoration: none; color: currentColor;"><svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-whatsapp whatsapp" viewBox="0 0 16 16">
+                                        <path d="M13.601 2.326A7.854 7.854 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.933 7.933 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.898 7.898 0 0 0 13.6 2.326zM7.994 14.521a6.573 6.573 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.557 6.557 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592zm3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.729.729 0 0 0-.529.247c-.182.198-.691.677-.691 1.654 0 .977.71 1.916.81 2.049.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232z"></path>
+                                                                </svg>
+                                    </a>
+                                    <a href="#" style="text-decoration: none; color: currentColor;"><svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-telegram telegram" viewBox="0 0 16 16">
+                                        <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.287 5.906c-.778.324-2.334.994-4.666 2.01-.378.15-.577.298-.595.442-.03.243.275.339.69.47l.175.055c.408.133.958.288 1.243.294.26.006.549-.1.868-.32 2.179-1.471 3.304-2.214 3.374-2.23.05-.012.12-.026.166.016.047.041.042.12.037.141-.03.129-1.227 1.241-1.846 1.817-.193.18-.33.307-.358.336a8.154 8.154 0 0 1-.188.186c-.38.366-.664.64.015 1.088.327.216.589.393.85.571.284.194.568.387.936.629.093.06.183.125.27.187.331.236.63.448.997.414.214-.02.435-.22.547-.82.265-1.417.786-4.486.906-5.751a1.426 1.426 0 0 0-.013-.315.337.337 0 0 0-.114-.217.526.526 0 0 0-.31-.093c-.3.005-.763.166-2.984 1.09z"></path>
+                                                                </svg>
+                                    </a>
+                                    <a href="https://www.facebook.com/Casa-Bella-Sales-Gallery-101437069082078" style="text-decoration: none; color: currentColor;"><svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-telegram facebook" viewBox="0 0 16 16">
+                                        <path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z"></path>
+                                                                </svg>
+                                    </a>
+                                    <a href="https://www.instagram.com/casabellasalesgallery" style="text-decoration: none; color: currentColor;"><svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-telegram instagram" viewBox="0 0 16 16">
+                                        <path d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.917 3.917 0 0 0-1.417.923A3.927 3.927 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.916 3.916 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.926 3.926 0 0 0-.923-1.417A3.911 3.911 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0h.003zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599.28.28.453.546.598.92.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.47 2.47 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.478 2.478 0 0 1-.92-.598 2.48 2.48 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233 0-2.136.008-2.388.046-3.231.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92.28-.28.546-.453.92-.598.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045v.002zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92zm-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217zm0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334z"></path>
+                                                                </svg>
+                                    </a>
+                                </p>
                             </div>
                         </div>
                     </div>
-                    <button name="bookpoint_form_btn" type="submit" class="btn btn-dark btn-lg rounded-0 px-5 mt-4">Send</button>
-                </form>
+                </div>
+                <div class="col-lg-5 mb-4">
+                    <h4 class="fs-3">Write to us</h4>
+                    <hr class="mb-4">
+
+                    <form method="post" id="contact_form" class="contact-form my-font">
+                        <input type="hidden" name="csrfmiddlewaretoken" value="HTYOD1gXevJGdErPbL1w5EK6vMBfi7GWe9gUxxyh6qmEoyPrOapwQeoOMQhCwByh">
+                        <div class="row g-2 my-font-contact">
+                            <div class="form-floating mb-1">
+                                <div id="div_id_name">
+                                    <input type="text" name="name" id="id_name" class="form-control" placeholder="Your name" required>
+                                </div>
+                            </div>
+                            <div class="form-floating mb-1">
+                                <div id="div_id_phone">
+                                    <input type="tel" name="phone" id="id_phone" class="form-control phone" placeholder="Your Phone" required>
+                                </div>
+                            </div>
+                            <div class="form-floating">
+                                <div id="div_id_email">
+                                    <input type="text" id="id_email" name="email" class="form-control" placeholder="Your email" required>
+                                </div>
+                            </div>
+                        </div>
+                        <button name="contact_form_btn" type="submit" class="btn double-border-button btn-lg rounded-0 px-5 mt-4">Send</button>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
-</div>
 
-<iframe id="map" style="border:0; width: 100%; height: 390px;margin-bottom: -6px;"
-    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3592.4380431682325!2d-80.19170038497849!3d25.789118883624266!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88d9b6a7a7e29d47%3A0xf2ea15781768ef6f!2zMTQ0NCBCaXNjYXluZSBCbHZkLCBNaWFtaSwgRkwgMzMxMzIsINCh0KjQkA!5e0!3m2!1sru!2sru!4v1640160109084!5m2!1sru!2sru"
-    frameborder="0" allowfullscreen></iframe>
+    <div class="text-center mb-5 my-font" style="margin-top: -40px">
+        <hr class="mb-5">
+        <div class="container">
+            <h2 class="mb-4">Book an appointment</h2>
+            <div class="row justify-content-center">
+                <div class="col-lg-5">
+                    <form method="post" id="bookpoint_form" class="contact-form">
+                        <input type="hidden" name="csrfmiddlewaretoken" value="HTYOD1gXevJGdErPbL1w5EK6vMBfi7GWe9gUxxyh6qmEoyPrOapwQeoOMQhCwByh">
+                        <div class="row g-2 my-font-contact">
+                            <div class="form-floating mb-1">
+                                <div id="div_id_name">
+                                    <input type="text" name="name" id="id_name" class="form-control" placeholder="Your name" required>
+                                </div>
+                            </div>
+                            <div class="form-floating mb-1">
+                                <div id="div_id_phone">
+                                    <input type="text" id="id_phone" name="phone" class="form-control rounded-0 phone_book"
+                                        placeholder="Your phone" required>
+                                </div>
+                            </div>
+                            <div class="form-floating mb-1">
+                                <div id="div_id_email">
+                                    <input type="text" id="id_email" name="email" class="form-control rounded-0"
+                                        placeholder="Your email" required>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div id="div_id_date">
+                                    <input type="datetime-local" id="id_date" name="date" class="form-control"
+                                    placeholder="Select date and time" required>
+                                </div>
+                            </div>
+                        </div>
+                        <button name="bookpoint_form_btn" type="submit" class="btn double-border-button btn-lg rounded-0 px-5 mt-4">Send</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 
-{% endblock %}
+    <iframe id="map" style="border:0; width: 100%; height: 390px;margin-bottom: -6px;"
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3592.4380431682325!2d-80.19170038497849!3d25.789118883624266!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88d9b6a7a7e29d47%3A0xf2ea15781768ef6f!2zMTQ0NCBCaXNjYXluZSBCbHZkLCBNaWFtaSwgRkwgMzMxMzIsINCh0KjQkA!5e0!3m2!1sru!2sru!4v1640160109084!5m2!1sru!2sru"
+        frameborder="0" allowfullscreen></iframe>
+    </div>
+</main>
+
+        <div class="footer-info" style="margin-top: 7px">
+            <div class="container text-center">
+                <p class="mb-3">© 2021 Casa Bella Miami, INC</p>
+                <p class="mb-0"><a href="{% url 'privacy-policy' %}">Privacy Policy</a></p>
+                <p class="mb-0"><a href="{% url 'disclaimer' %}">Legal Disclaimer</a></p>
+            </div>
+        </div>
+    </footer>
+
+
+    <script>
+        $(window).on('load',function(){
+            $('#messagesuccess').modal('show');
+        });
+    </script>
+
+    <script>
+        function onEntry(entry) {
+        entry.forEach(change => {
+        if (change.isIntersecting) {
+         change.target.classList.add('element-show');}
+            });
+        }
+
+        let options = {
+          threshold: [0.5] };
+        let observer = new IntersectionObserver(onEntry, options);
+        let elements = document.querySelectorAll('.element-animation');
+
+        for (let elm of elements) {
+          observer.observe(elm);}
+    </script>
+    <script src="{% static 'main/js/phone-code.js' %}"></script>
+{% block footer %}{% endblock %}
+
+</body>
+</html>
+
 
