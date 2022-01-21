@@ -6,7 +6,7 @@ body {
 
 /* Scrool effect */
 ::-webkit-scrollbar-button {
-
+  background-image:url('');
   background-repeat:no-repeat;
   width: 5px;
   height: 0px;
@@ -23,6 +23,7 @@ body {
   background-color:#777777;
 }
 ::-webkit-resizer{
+  background-image:url('');
   background-repeat:no-repeat;
   width: 4px;
   height: 0px;
@@ -92,6 +93,23 @@ body {
 .img-100vh {
   width: 100%;
   height: 100vh;
+}
+
+/* Main Crypto Modal */
+#modalcrypto .col-img {
+  padding: 0;
+}
+#modalcrypto .col-img img {
+  width: 100%;
+  height: 320px;
+  object-fit: cover;
+}
+#modalcrypto .col-info .btn-close {
+  padding-top: 25px;
+  float: right;
+}
+#modalcrypto .col-info .info-text {
+  padding-top: 6rem;
 }
 
 /* Sections */
@@ -246,12 +264,13 @@ body {
 
 /* Listings page */
 .listings-btn-sp-app {
-  background-color: #feff58;
+  background-color: #cfeaf3;
 }
 .listings-btn-sp-app:hover {
-  background-color: #feff18;
+  color: #fff;
+  background-color: #4ccbf5;
   box-shadow: 0 8px 19px -6px #00000066;
-  text-shadow: none;
+  text-shadow: 0 1px 5px #0000007a;
   -webkit-transition: all 0.5s ease;
   -moz-transition: all 0.5s ease;
   transition: all 0.5s ease;
@@ -353,6 +372,14 @@ body {
     margin-top: 60px;
     margin-bottom: 32px;
   }
+  #modalcrypto .col-img {
+    padding-right: calc(var(--bs-gutter-x) * .5);
+    padding-left: calc(var(--bs-gutter-x) * .5);
+  }
+  #modalcrypto .col-info .info-text {
+      padding-top: 3.5rem;
+      padding-bottom: 3.5rem;
+  }
 }
 @media (max-width: 768px) {
   .img-100vh {
@@ -366,6 +393,9 @@ body {
   }
   .section-block-moments .img-moments {
     height: 360px;
+  }
+  #modalcrypto .col-img img {
+    height: 240px;
   }
 }
 @media (max-width: 590px) {

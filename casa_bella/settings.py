@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'main',
-    "django_bootstrap5",
+    # "django_bootstrap5",
 
 ]
 
@@ -68,7 +68,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'django.template.context_processors.media',
+                'main.context_processors.contacts_forms',
+                # 'django.template.context_processors.media',
 
             ],
         },
@@ -107,13 +108,20 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+EMAIL_HOST = 'smtp.timeweb.ru'
+EMAIL_PORT = 465
+EMAIL_HOST_USER = "info@casabellatower.com"
+EMAIL_HOST_PASSWORD = "819GkmCH"
+EMAIL_USE_SSL = True
+SERVER_EMAIL = EMAIL_HOST_USER
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.0/topics/i18n/
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'America/New_York'
 
 USE_I18N = True
 

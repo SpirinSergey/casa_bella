@@ -34,8 +34,14 @@ def gallery(request):
 def listings(request):
     unit_type = request.GET.get('unit_type')
     view = request.GET.get('view')
-    if unit_type or view:
+    if unit_type and view:
         listing_object = Listing.objects.filter(Q(UNIT_TYPE__icontains=unit_type) & Q(BATHROOMS__icontains=view))
+        return render(request, 'main/listings.html', context={'listing_object': listing_object})
+    elif unit_type:
+        listing_object = Listing.objects.filter(UNIT_TYPE__exact=unit_type)
+        return render(request, 'main/listings.html', context={'listing_object': listing_object})
+    elif view:
+        listing_object = Listing.objects.filter(BATHROOMS__exact=view)
         return render(request, 'main/listings.html', context={'listing_object': listing_object})
     else:
         listing_object = Listing.objects.all()

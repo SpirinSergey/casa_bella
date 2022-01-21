@@ -1,40 +1,84 @@
 {% load static %}
 
-{# Load the tag library #}
-{% load django_bootstrap5 %}
-
-{# Load CSS and JavaScript #}
-{% bootstrap_css %}
-{% bootstrap_javascript %}
-
-{# Display django.contrib.messages as Bootstrap alerts #}
-{% bootstrap_messages %}
-
-
 
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="utf-8">
-    {% block title %}{% endblock %}
+    <title>{% block title %}{% endblock %}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <link rel="shortcut icon" type="image/png" href="{% static "main/img/favicon.ico" %}">
 
     <link rel="stylesheet" href="/static/main/css/update_style.css">
     <link rel="stylesheet" href="/static/main/css/my-btn.css">
 
+    <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
     <link rel="stylesheet" href="/static/main/css/theme.css">
     <link rel="stylesheet" href="/static/main/css/phone-code.css">
-
-    <link rel="shortcut icon" type="image/png" href="{% static "main/img/favicon.ico" %}">
 
     <link rel="stylesheet" href="/static/main/fonts/HelveticaNowText-Regular/style.css">
     <link rel="stylesheet" href="/static/main/fonts/Helvetica-Now-Display-Regular/style.css">
 
+    <!-- For datepicker -->
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+
+<!-- Yandex.Metrika counter -->
+<script type="text/javascript" >
+   (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+   m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+   (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+   ym(87055602, "init", {
+        clickmap:true,
+        trackLinks:true,
+        accurateTrackBounce:true,
+        webvisor:true
+   });
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/87055602" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<!-- /Yandex.Metrika counter -->
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-RFM4TZ52SK"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-RFM4TZ52SK');
+</script>
+
 </head>
 
 <body>
+
+
+    {% if messages %}
+    <div class="modal" tabindex="-1" id="messagesuccess">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content rounded-0">
+                <div class="modal-header">
+                    <h5 class="modal-title">Successful</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    {% for message in messages %}
+                    {{ message|safe }}
+                    {% endfor %}
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-dark btn-lg rounded-0" data-bs-dismiss="modal">Okey</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
     <header>
         <nav class="navbar navbar-light navbar-expand-lg fixed-top bg-white clean-navbar shadow" >
             <div class="container">
@@ -73,8 +117,8 @@
     </div>
 </main>
 
-    <footer class="border-top">
-        <div class="container text-center py-4 footer-contacts">
+    <footer class="border-top ">
+        <div class="container text-center py-4 footer-contacts {% block foo %}{% endblock %}">
             <div class="row align-items-center">
                 <div class="col-lg-6 my-2">
                     <p class="mb-1" style="padding: 2px 0; font-size: 17px;"><a href="tel:+1 (777) 777-7777" class="text-dark whatsapp">+1 (777) 777-7777</a></p>
@@ -116,88 +160,108 @@
             </div>
         </div>
 
-        <!-- Modal Write to us -->
-        <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content rounded-0">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Contact us</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body text-center">
-                        <form method="post" id="contact_form" class="contact-form">
-                            {% csrf_token %}
-                            <div class="row g-2">
-                                <div class="form-floating mb-1">
-                                    <div id="div_id_name">
-                                        <input type="text" name="name" id="id_name" class="form-control" placeholder="Your name" required>
-                                    </div>
-                                </div>
-                                <div class="form-floating mb-1">
-                                    <div id="div_id_phone">
-                                        <input type="text" name="phone" id="id_phone" class="form-control phone" placeholder="Your Phone" required>
-                                    </div>
-                                </div>
-                                <div class="form-floating">
-                                    <div id="div_id_email">
-                                        <input type="text" id="id_email" name="email" class="form-control" placeholder="Your email" required>
-                                    </div>
+<!-- Modal Write to us -->
+    <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content rounded-0">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Contact us</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-center">
+                    <form method="post" id="contact_form" class="contact-form">
+                        {% csrf_token %}
+                        <div class="row g-2">
+                            <div class="form-floating mb-1">
+                                <div id="div_id_first_name">
+                                    <input type="text" name="first_name" id="id_first_name" class="form-control"
+                                                                        placeholder="First name" required>
                                 </div>
                             </div>
-                            <button name="contact_form_btn" type="submit" class="btn btn-dark btn-lg rounded-0 px-5 mt-4">Send</button>
-                        </form>
-                    </div>
+                            <div class="form-floating mb-1">
+                                <div id="div_id_last_name">
+                                    <input type="text" name="last_name" id="id_last_name" class="form-control"
+                                                                        placeholder="Last name" required>
+                                </div>
+                            </div>
+                            <div class="form-floating mb-1">
+                                <div id="div_id_phone">
+                                   <input type="text" name="phone" id="id_phone" class="form-control phone"
+                                                                         placeholder="Your Phone" required>
+                                </div>
+                            </div>
+                            <div class="form-floating">
+                                <div id="div_id_email">
+                                    <input type="text" id="id_email" name="email" class="form-control"
+                                           placeholder="Your email" required>
+                                </div>
+                            </div>
+                        </div>
+                        <button name="contact_form_btn" type="submit" class="btn btn-dark btn-lg rounded-0 px-5 mt-4">
+                            Send
+                        </button>
+                    </form>
                 </div>
             </div>
         </div>
+    </div>
 
-        <!-- Modal Book an appointment -->
-        <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content rounded-0">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Book an appointment</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body text-center">
-                        <form method="post" id="bookpoint_form" class="contact-form">
-                            {% csrf_token %}
-                            <div class="row g-2">
-                                <div class="form-floating mb-1">
-                                    <div id="div_id_name">
-                                        <input type="text" name="name" id="id_name" class="form-control" placeholder="Your name" required>
-                                    </div>
+    <!-- Modal Book an appointment -->
+    <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content rounded-0">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Book an appointment</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-center">
+                    <form method="post" id="bookpoint_form" class="contact-form">
+                        {% csrf_token %}
+                        <div class="row g-2">
+                            <div class="form-floating mb-1">
+                                <div id="div_id_first_name">
+                                    <input type="text" name="first_name" id="id_first_name" class="form-control"
+                                                                        placeholder="First name" required>
                                 </div>
-                                <div class="form-floating mb-1">
-                                    <div id="div_id_phone">
-                                        <input type="text" id="id_phone" name="phone" class="form-control rounded-0 phone_book"
-                                            placeholder="Your phone" required>
-                                    </div>
+                            </div>
+                            <div class="form-floating mb-1">
+                                <div id="div_id_last_name">
+                                    <input type="text" name="last_name" id="id_last_name" class="form-control"
+                                                                        placeholder="Last name" required>
                                 </div>
-                                <div class="form-floating mb-1">
-                                    <div id="div_id_email">
-                                        <input type="text" id="id_email" name="email" class="form-control rounded-0"
-                                            placeholder="Your email" required>
-                                    </div>
+                            </div>
+                            <div class="form-floating mb-1">
+                                <div id="div_id_phone">
+                                    <input type="text" id="id_phone" name="phone"
+                                           class="form-control rounded-0 phone_book"
+                                           placeholder="Your phone" required>
                                 </div>
-                                <div class="col">
-                                    <div class="row">
-                                        <div class="col mb-2">
-                                            <div id="div_id_date">
-                                                <input type="datetime-local" id="id_date" name="date" class="form-control"
-                                                placeholder="Select date and time" required>
-                                            </div>
+                            </div>
+                            <div class="form-floating mb-1">
+                                <div id="div_id_email">
+                                    <input type="text" id="id_email" name="email" class="form-control rounded-0"
+                                           placeholder="Your email" required>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="row">
+                                    <div class="col mb-2">
+                                        <div id="div_id_date">
+                                            <input type="datetime-local" id="id_date" name="date" class="form-control"
+                                                   placeholder="Select date and time" required>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <button name="bookpoint_form_btn" type="submit" class="btn btn-dark btn-lg rounded-0 px-5 mt-4">Send</button>
-                        </form>
-                    </div>
+                        </div>
+                        <button name="bookpoint_form_btn" type="submit" class="btn btn-dark btn-lg rounded-0 px-5 mt-4">
+                            Send
+                        </button>
+                    </form>
                 </div>
             </div>
         </div>
-
+    </div>
 
         <div class="footer-info">
             <div class="container text-center">
@@ -208,12 +272,6 @@
         </div>
     </footer>
 
-
-    <script>
-        $(window).on('load',function(){
-            $('#messagesuccess').modal('show');
-        });
-    </script>
 
     <script>
         function onEntry(entry) {
@@ -231,7 +289,17 @@
         for (let elm of elements) {
           observer.observe(elm);}
     </script>
+
+    <script src="{% static 'main/js/vendor.bundle.js' %}"></script>
+    <script src="{% static 'main/js/index.bundle.js' %}"></script>
     <script src="{% static 'main/js/phone-code.js' %}"></script>
+
+    <script>
+        $(window).on('load',function(){
+            $('#messagesuccess').modal('show');
+        });
+    </script>
+
 {% block footer %}{% endblock %}
 
 </body>

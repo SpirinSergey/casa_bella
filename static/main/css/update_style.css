@@ -32,7 +32,7 @@
     padding-bottom: 45px;
 }
 
-.gallery-1 {
+.gallery-11 {
     float: left;
 }
 
@@ -91,4 +91,8 @@ section {
     text-decoration: none;
     transition-duration: 1s;
     color: #727272;
+}
+
+.my-none {
+    display: none;
 }
